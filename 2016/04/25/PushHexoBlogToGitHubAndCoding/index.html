@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>如何将Hexo Blog同时发布到GitHub跟Coding上 | 独ǒ无②&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言上一篇文章已经讲过怎样使用Hexo建立博客以及怎样将Hexo博客发布到GitHub上.如果对Hexo建立博客还不熟悉请先看看之前的那篇文章我的Hexo博客建站日志.大家可能跟我一样,建站的时候很轻松,但是等往github上提交的时候会等待很长时间,毕竟GitHub是国外的东西,很多地方会被墙掉,在我们现在不翻墙的情况下如何能将自己的博客迅速的托管到免费平台上呢?于是我想到了我比较喜欢保存自己项">
+<meta name="keywords" content="Hexo,GitHub,Coding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何将Hexo Blog同时发布到GitHub跟Coding上">
+<meta property="og:url" content="https://www.shenzhenwei.cn/2016/04/25/PushHexoBlogToGitHubAndCoding/index.html">
+<meta property="og:site_name" content="独ǒ无②&#39;s blog">
+<meta property="og:description" content="前言上一篇文章已经讲过怎样使用Hexo建立博客以及怎样将Hexo博客发布到GitHub上.如果对Hexo建立博客还不熟悉请先看看之前的那篇文章我的Hexo博客建站日志.大家可能跟我一样,建站的时候很轻松,但是等往github上提交的时候会等待很长时间,毕竟GitHub是国外的东西,很多地方会被墙掉,在我们现在不翻墙的情况下如何能将自己的博客迅速的托管到免费平台上呢?于是我想到了我比较喜欢保存自己项">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.blog.csdn.net/20160425013150955">
+<meta property="og:image" content="http://img.blog.csdn.net/20160424234852399">
+<meta property="og:image" content="http://img.blog.csdn.net/20160425013553308">
+<meta property="og:image" content="http://img.blog.csdn.net/20160425001714644">
+<meta property="og:image" content="http://img.blog.csdn.net/20160425002144536">
+<meta property="og:image" content="http://img.blog.csdn.net/20160425013918474">
+<meta property="og:image" content="http://img.blog.csdn.net/20160425013942380">
+<meta property="og:image" content="http://img.blog.csdn.net/20160425014004224">
+<meta property="og:image" content="http://img.blog.csdn.net/20160425014038443">
+<meta property="og:image" content="http://img.blog.csdn.net/20160425014106287">
+<meta property="og:updated_time" content="2018-01-19T07:32:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何将Hexo Blog同时发布到GitHub跟Coding上">
+<meta name="twitter:description" content="前言上一篇文章已经讲过怎样使用Hexo建立博客以及怎样将Hexo博客发布到GitHub上.如果对Hexo建立博客还不熟悉请先看看之前的那篇文章我的Hexo博客建站日志.大家可能跟我一样,建站的时候很轻松,但是等往github上提交的时候会等待很长时间,毕竟GitHub是国外的东西,很多地方会被墙掉,在我们现在不翻墙的情况下如何能将自己的博客迅速的托管到免费平台上呢?于是我想到了我比较喜欢保存自己项">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160425013150955">
+  
+    <link rel="alternative" href="/atom.xml" title="独ǒ无②&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/head.jpg">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">独ǒ无②</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">独ǒ无② 的技术小黑屋</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=826337999@qq.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/pvphero" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="https://www.zhihu.com/people/zhu-you-qi-38" title="zhihu">zhihu</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-Studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/Bitmap/" style="font-size: 10px;">Bitmap</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/Intent/" style="font-size: 10px;">Intent</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/ListView/" style="font-size: 15px;">ListView</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/NDK/" style="font-size: 15px;">NDK</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/fragment/" style="font-size: 15px;">fragment</a> <a href="/tags/setFlags/" style="font-size: 10px;">setFlags</a> <a href="/tags/性能优化/" style="font-size: 10px;">性能优化</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/kevinlinkai">kevinlinkai</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/lllkey">lllkey</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.hanyang.site">HanYang</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://jeepend.github.io">jeepend</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://wanghao200906.github.io">wanghao</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">一年有四季,但是人生只有两季, 努力是旺季,不努力是淡季</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">独ǒ无②</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">独ǒ无②</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">独ǒ无② 的技术小黑屋</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=826337999@qq.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/pvphero" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="https://www.zhihu.com/people/zhu-you-qi-38" title="zhihu">zhihu</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-PushHexoBlogToGitHubAndCoding" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/25/PushHexoBlogToGitHubAndCoding/" class="article-date">
+      <time datetime="2016-04-24T17:22:44.000Z" itemprop="datePublished">2016-04-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      如何将Hexo Blog同时发布到GitHub跟Coding上
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Coding/">Coding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitHub/">GitHub</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上一篇文章已经讲过怎样使用Hexo建立博客以及怎样将Hexo博客发布到GitHub上.如果对Hexo建立博客还不熟悉请先看看之前的那篇文章<a href="http://pvphero.github.io/2016/04/24/我的Hexo博客建站日志/" target="_blank" rel="noopener">我的Hexo博客建站日志</a>.大家可能跟我一样,建站的时候很轻松,但是等往github上提交的时候会等待很长时间,毕竟GitHub是国外的东西,很多地方会被墙掉,在我们现在不翻墙的情况下如何能将自己的博客迅速的托管到免费平台上呢?于是我想到了我比较喜欢保存自己项目的<a href="https://coding.net/" target="_blank" rel="noopener">Coding.net</a>.一款国内的,强大的代码托管,项目演示平台.平台找到了,但又如何能不费劲一次就同时部署到<a href="https://coding.net/" target="_blank" rel="noopener">Coding.net</a>跟<a href="http://github.com" target="_blank" rel="noopener">GitHub</a>上呢?于是带着这两个问题,我查了很多资料,又经过一番折腾,终于实现了,一次部署同时发布.<br><a id="more"></a><br><img src="http://img.blog.csdn.net/20160425013150955" alt="这里写图片描述"></p>
+<h1 id="在Coding上创建一个项目"><a href="#在Coding上创建一个项目" class="headerlink" title="在Coding上创建一个项目"></a>在Coding上创建一个项目</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>首先打开个账户的<a href="https://coding.net/user/account/setting/basic" target="_blank" rel="noopener">个人设置</a>中找到Global Key(个性后缀),然后新建一个Coding项目,项目名字跟Global Key相同.(大家也可以不这么建,可以直接建立项目,但是最后生成的页面会很长,显得不美观)<br><img src="http://img.blog.csdn.net/20160424234852399" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20160425013553308" alt="这里写图片描述"></p>
+<p>Tips:</p>
+<ul>
+<li>最好创建跟Global Key相同的项目这样访问起来直接就是<a href="http://yourGlobalKey.coding.me" target="_blank" rel="noopener">http://yourGlobalKey.coding.me</a>. 比如说我的Coding的博客<a href="http://shenzhenwei.coding.me/" target="_blank" rel="noopener">CodingBlog</a>,否则的话后面得加上项目名.</li>
+<li>这里创建的是公有项目,为什么要创建公有项目,是因为如果项目弄成私有的,那么你的项目的pages页面就看不到里面的js效果了,就是只有文字的那种,主题什么的都白设置了.</li>
+<li>如果项目已经设置成私有项目了并且还想看到效果,那只能用coding的演示功能了.只是coding功能是需要花费码币的,24小时0.01码币.</li>
+<li>如果项目设置成公有的项目了,然后也部署成功了,在手机上打开的时候建议使用腾讯内核外的浏览器,否则的话可能会被当成恶意网站屏蔽掉.在pc上任何浏览器打开都是没问题的.<h2 id="配置CodingGit的SSH"><a href="#配置CodingGit的SSH" class="headerlink" title="配置CodingGit的SSH"></a>配置CodingGit的SSH</h2>如果是第一次使用CodingGit提交的话,建议先配置SSH公匙.Coding生成公匙的方法可以查看<a href="https://coding.net/help/doc/git/ssh-key.html" target="_blank" rel="noopener">配置CodingSSH公钥</a>.如果陌生可以按以下步骤来:</li>
+</ul>
+<ol>
+<li>打开个人中心的<a href="https://coding.net/user/account/setting/keys" target="_blank" rel="noopener">SSH公匙</a></li>
+<li>如果之前配置过GitHub的公匙的话直接打开,.ssh文件夹里面的_rsa.pub<br><img src="http://img.blog.csdn.net/20160425001714644" alt="这里写图片描述"><br>比如我的是pvphero_rsa.pub,然后将里面的内容全部复制,填写到ssh_rsa公匙处,公匙的名称可以随便起,然后点击’添加’,再接着输入密码就可以完成添加了<br><img src="http://img.blog.csdn.net/20160425002144536" alt="这里写图片描述"></li>
+<li>添加后测试一下<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@git.coding.net</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如果出现下面的提示则表示公匙添加成功了:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello shenzhenwei You&apos;ve connected to Coding.net by SSH successfully!</span><br></pre></td></tr></table></figure></p>
+<h1 id="配置-config-yml的部署"><a href="#配置-config-yml的部署" class="headerlink" title="配置_config.yml的部署"></a>配置_config.yml的部署</h1><p>准备工作都做好了,现在开始配置_config.yml,大家经过前面的文章<a href="http://pvphero.github.io/2016/04/24/我的Hexo博客建站日志/" target="_blank" rel="noopener">我的Hexo博客建站日志</a>相信对发布到GitHub上并不陌生,发布到GitHub上是在_config.yml文件中的deploy加上了GitHub的项目地址,以及发布的分支.那么要想同时发布到Coding上肯定是需要在配置文件中加上Coding的项目地址的,但是应该怎么加?格式又是如何呢?,根据<a href="https://hexo.io/zh-cn/docs/deployment.htmll" target="_blank" rel="noopener">Hexo官方文档</a>只需要将deploy的格式更改成下面的就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo:</span><br><span class="line">    github: &lt;repository url&gt;,[branch]</span><br><span class="line">    coding: &lt;repository url&gt;,[branch]</span><br></pre></td></tr></table></figure></p>
+<p>比如我的是这样的:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo:</span><br><span class="line">    github: git@github.com:pvphero/pvphero.github.io.git,master</span><br><span class="line">    coding: git@git.coding.net:shenzhenwei/shenzhenwei.git,master</span><br></pre></td></tr></table></figure></p>
+<h1 id="部署Hexo博客"><a href="#部署Hexo博客" class="headerlink" title="部署Hexo博客"></a>部署Hexo博客</h1><h2 id="部署到GitHub跟Coding"><a href="#部署到GitHub跟Coding" class="headerlink" title="部署到GitHub跟Coding"></a>部署到GitHub跟Coding</h2><ul>
+<li><p>前面的工作都做好了以后,生成静态网页</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>本地查看效果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>部署到git</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo hexo d</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>之后我们可以看到Coding跟GitHub中项目有我们提交上来的代码<br><img src="http://img.blog.csdn.net/20160425013918474" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20160425013942380" alt="这里写图片描述"><br>并且GitHub上已经可以看到发布的内容<a href="http://pvphero.github.io/" target="_blank" rel="noopener">Github Blog</a><br><img src="http://img.blog.csdn.net/20160425014004224" alt="这里写图片描述"></p>
+<h2 id="设置Coding项目中的配置"><a href="#设置Coding项目中的配置" class="headerlink" title="设置Coding项目中的配置"></a>设置Coding项目中的配置</h2><p><strong>在Coding上部署博客有两种方式,前面提到过,在做下说明.Coding上部署博客总共有两种:</strong></p>
+<ol>
+<li>通过coding pages的方式进行博客的部署.coding为每个项目都推出了pages,不管是公有的还是私有的都有pages功能.我也比较推荐这种方式去搭建Hexo Coding博客.有很多好处,比如说免费,比如说可以绑定域名等等吧.</li>
+<li>通过Coding的演示功能进行Hexo Coding博客的部署.这种方式是收费的,每天最少0.01码币,大家可以体验体验.但不推荐.<br><strong>如果采用Pages方式的话就必须要在source/新建一个空白文件,名字必须是Staticfile</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd source</span><br><span class="line">touch Staticfile  #名字必须是Staticfile</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>因为用过coding演示功能的小伙伴都可能会知道,如果演示的时候没有Staticfile,coding的检测会提示检测不到,询问你是否强制开启.具体的原因的话,可能是coding是用静态的方式部署的,检测到这个的时候就知道你的项目是以静态方式发布的.</p>
+<h3 id="开启coding项目的pages功能"><a href="#开启coding项目的pages功能" class="headerlink" title="开启coding项目的pages功能"></a>开启coding项目的pages功能</h3><p>在刚刚建的项目中开启pages功能,这里的部署分支选择master,因为你在_config.yml中设置的分支是master,然后点击立即开启.<br><img src="http://img.blog.csdn.net/20160425014038443" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20160425014106287" alt="这里写图片描述"><br>这时候如果点击链接出现404的话,并且本地测试是没有问题的,github上打开的链接也是没有问题的话,那么久需要耐心的多等几分钟了,这个coding.net部署的稍微慢点.coding的博客部署就ok了.这样就可以提交一次同时部署了~~</p>
+<h3 id="演示方式部署"><a href="#演示方式部署" class="headerlink" title="演示方式部署"></a>演示方式部署</h3><p>关于演示方式部署,我就不费口舌了,因为演示方式部署肯定支持静态网页的,不管你是私有项目还是公有项目都是可以看到的.如果实在想去进行网站部署,建议大家参看<a href="http://www.jianshu.com/p/7ad9d3cd4d6e" target="_blank" rel="noopener"> 嘟嘟MD </a></p>
+<p><strong>希望这篇文章对大家有所帮助~~我也是看了<a href="http://www.jianshu.com/p/7ad9d3cd4d6e" target="_blank" rel="noopener"> 嘟嘟MD </a>的博客,然后跟着一步一步实现的~希望大家有问题多交流~</strong></p>
+<p><a href="https://coding.net/wow/stories/" target="_blank" rel="noopener">本文参与 Coding 征文计划</a></p>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/04/25/PushHexoBlogToGitHubAndCoding/">如何将Hexo Blog同时发布到GitHub跟Coding上</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 独ǒ无② 的个人博客">独ǒ无②</a></p>
+        <p><span>发布时间:</span>2016年04月25日 - 01时22分</p>
+        <p><span>最后更新:</span>2018年01月19日 - 15时32分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/04/25/PushHexoBlogToGitHubAndCoding/" title="如何将Hexo Blog同时发布到GitHub跟Coding上">https://www.shenzhenwei.cn/2016/04/25/PushHexoBlogToGitHubAndCoding/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://www.shenzhenwei.cn/2016/04/25/PushHexoBlogToGitHubAndCoding/　　作者: 独ǒ无②" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2016/04/27/AndroidIntentJump/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Android使用Intent跳转的时候,如何清除堆栈里所有的Activity
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/24/MyHexoBlogWebsiteRecord/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">我的Hexo博客建站日志</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#在Coding上创建一个项目"><span class="toc-number">2.</span> <span class="toc-text">在Coding上创建一个项目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工作"><span class="toc-number">2.1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置CodingGit的SSH"><span class="toc-number">2.2.</span> <span class="toc-text">配置CodingGit的SSH</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置-config-yml的部署"><span class="toc-number">3.</span> <span class="toc-text">配置_config.yml的部署</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#部署Hexo博客"><span class="toc-number">4.</span> <span class="toc-text">部署Hexo博客</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#部署到GitHub跟Coding"><span class="toc-number">4.1.</span> <span class="toc-text">部署到GitHub跟Coding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置Coding项目中的配置"><span class="toc-number">4.2.</span> <span class="toc-text">设置Coding项目中的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开启coding项目的pages功能"><span class="toc-number">4.2.1.</span> <span class="toc-text">开启coding项目的pages功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#演示方式部署"><span class="toc-number">4.2.2.</span> <span class="toc-text">演示方式部署</span></a></li></ol></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'pvphero',
+      repo: 'pvphero.github.io',
+      oauth: {
+        client_id: 'c2249136ecf5a9510254',
+        client_secret: '3802ed10eafb165c242acca134fda6b9bf2463e9',
+      },
+    })
+    gitment.render('gitments')
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/04/27/AndroidIntentJump/" title="上一篇: Android使用Intent跳转的时候,如何清除堆栈里所有的Activity">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2016/04/24/MyHexoBlogWebsiteRecord/" title="下一篇: 我的Hexo博客建站日志">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/07/04/20180704AndroidUseDrawerLayout/">Android使用ToolBar+DrawerLayout+NavigationView实现侧滑抽屉效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/13/20180413UseWifiToDebugApp/">AndroidStudio利用ADB WIFI调试程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/03/20180403StopWorld/">StopWorld组织成立</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/30/20180330AndroidListViewInDialog/">由Dialog里面嵌套ListView之后的高度自适应引起的ListView性能优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/20180313AndroidInterViewFragment/">Fragment生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/09/AS3NDKCMakeLists/">AndroidStudio项目之CmakeLists解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/08/AS3NDKEnvironment/">AndroidStudio 3.0 NDK环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/25/GoodGoodStudyDayDayUp/">随笔</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/18/AndroidIntentJumpToSysSettings/">Anroid Intent跳转系统设置页面</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/14/ServiceIntetMustBeExplicit/">Service Intent must be explicit的解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/31/AndroidNotificationSound/">关于Android 7.0系统通知声音不能播放</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/JDK7CollectionsSortError/">JDK7 Collections.sort()方法报错分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/11/ClaimApp/">Mac下关于百度开发者中心认领应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/BitmapOccupyMemory/">Bitmap到底占多少内存</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/04/Android-IllegalStateException-Fragment-not-attached-to-Activity/">Android IllegalStateException: Fragment not attached to Activity</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/04/AddGitTag/">使用命令行给Git项目加上tag</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/RemoveAndroidListviewDefaultClickEffect/">怎么去除android listview的默认点击效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/27/AndroidIntentJump/">Android使用Intent跳转的时候,如何清除堆栈里所有的Activity</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/25/PushHexoBlogToGitHubAndCoding/">如何将Hexo Blog同时发布到GitHub跟Coding上</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/24/MyHexoBlogWebsiteRecord/">我的Hexo博客建站日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/24/hello-world/">Hello World</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 独ǒ无②
+            </div>
+            <div class="footer-right">
+                <!--<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman-->
+                <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >海贼到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
