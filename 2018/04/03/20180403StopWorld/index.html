@@ -9,7 +9,7 @@
 <meta name="keywords" content="Android,Interview">
 <meta property="og:type" content="article">
 <meta property="og:title" content="StopWorld组织成立">
-<meta property="og:url" content="https://www.shenzhenwei.cn/2018/04/03/20180403StopWorld/index.html">
+<meta property="og:url" content="http://pvphero.github.io/2018/04/03/20180403StopWorld/index.html">
 <meta property="og:site_name" content="独ǒ无②&#39;s blog">
 <meta property="og:description" content="StopWorld组织在今天成立了,成立的缘由是翔哥提出来要维护一套面试的项目.为啥起这个名字呢?翔哥说JVM有个很牛逼的函数,这个函数就叫StopWorld,听起来很酷炫,有种逆天的感觉,哈哈~  回到垃圾回收上，在开始学习GC之前你应该知道一个词：stop-the-world。不管选择哪种GC算法，stop-the-world都是不可避免的。Stop-the-world意味着从应用中停下来并进">
 <meta property="og:locale" content="zh-Hans">
@@ -264,7 +264,7 @@
 <p>先贴出部分的Android的内容,以后会持续更新</p>
 <h1 id="Android基础"><a href="#Android基础" class="headerlink" title="Android基础"></a>Android基础</h1><details><br><summary>目录</summary><br><br><br>- <a href="#1-了解fragment么,说说fragmment的生命周期">1.了解Fragment么,说说Fragmment的生命周期</a><br>- <a href="#2-安卓的事件分发机制">2.安卓的事件分发机制</a><br>- <a href="#3-android重要术语解释">3.Android重要术语解释</a><br>- <a href="#4-android启动模式">4.Android启动模式</a><br>- <a href="#5-android-ipc-binder原理">5.Android IPC:Binder原理</a><br><br></details>
 
-<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="1-了解Fragment么-说说Fragmment的生命周期"><a href="#1-了解Fragment么-说说Fragmment的生命周期" class="headerlink" title="1 了解Fragment么,说说Fragmment的生命周期"></a>1 了解Fragment么,说说Fragmment的生命周期</h3><details><br><summary>展开查看答案</summary><br><br>一张图概括,详细请看博客链接<a href="http://pvphero.github.io/2018/03/13/20180313AndroidInterViewFragment/" target="_blank" rel="noopener">Fragment生命周期</a><br><img src="https://dn-coding-net-production-pp.qbox.me/de6215bc-2e4d-43db-bc39-45526fe33a01.png" alt="图片"><br></details>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="1-了解Fragment么-说说Fragmment的生命周期"><a href="#1-了解Fragment么-说说Fragmment的生命周期" class="headerlink" title="1 了解Fragment么,说说Fragmment的生命周期"></a>1 了解Fragment么,说说Fragmment的生命周期</h3><details><br><summary>展开查看答案</summary><br><br>一张图概括,详细请看博客链接<a href="http://pvphero.github.io/2018/03/13/20180313AndroidInterViewFragment/">Fragment生命周期</a><br><img src="https://dn-coding-net-production-pp.qbox.me/de6215bc-2e4d-43db-bc39-45526fe33a01.png" alt="图片"><br></details>
 
 <h3 id="2-安卓的事件分发机制"><a href="#2-安卓的事件分发机制" class="headerlink" title="2 安卓的事件分发机制"></a>2 安卓的事件分发机制</h3><details><br><summary>展开查看答案</summary><br><br>   - Android事件的基础知识：<br>   所有的Touch事件都封装到MotionEvent里面<br>   事件处理包括三种情况，分别为：<code>传递—-dispatchTouchEvent()函数</code>、<code>拦截—-
    onInterceptTouchEvent()函数</code>、<code>消费—-onTouchEvent()函数</code>和<code>OnTouchListener</code><br>   事件类型分为<code>ACTION_DOWN</code>, <code>ACTION_UP</code>, <code>ACTION_MOVE</code>, <code>ACTION_POINTER_DOWN</code>,<br>   <code>ACTION_POINTER_UP</code>, <code>ACTION_CANCEL</code>等<br>   每个事件都是以<code>ACTION_DOWN</code>开始<code>ACTION_UP</code>结束<br><br>   - Android事件传递流程：<br>     1. 事件都是从<code>Activity.dispatchTouchEvent()</code>开始传递<br>     2. 事件由父View传递给子View，ViewGroup可以通过<code>onInterceptTouchEvent()</code>方法对事件拦截，<br>     停止其向子view传递<br>     3. 如果事件从上往下传递过程中一直没有被停止，且最底层子View没有消费事件，<strong>事件会反向往上传递
@@ -340,8 +340,8 @@
         <p><span>发布时间:</span>2018年04月03日 - 23时40分</p>
         <p><span>最后更新:</span>2018年04月03日 - 23时59分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/04/03/20180403StopWorld/" title="StopWorld组织成立">https://www.shenzhenwei.cn/2018/04/03/20180403StopWorld/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://www.shenzhenwei.cn/2018/04/03/20180403StopWorld/　　作者: 独ǒ无②" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/04/03/20180403StopWorld/" title="StopWorld组织成立">http://pvphero.github.io/2018/04/03/20180403StopWorld/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://pvphero.github.io/2018/04/03/20180403StopWorld/　　作者: 独ǒ无②" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>

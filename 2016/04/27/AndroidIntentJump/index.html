@@ -9,7 +9,7 @@
 <meta name="keywords" content="Android,Intent,setFlags">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android使用Intent跳转的时候,如何清除堆栈里所有的Activity">
-<meta property="og:url" content="https://www.shenzhenwei.cn/2016/04/27/AndroidIntentJump/index.html">
+<meta property="og:url" content="http://pvphero.github.io/2016/04/27/AndroidIntentJump/index.html">
 <meta property="og:site_name" content="独ǒ无②&#39;s blog">
 <meta property="og:description" content="我在开发一块下单送货软件的时候遇到的这个问题.场景描述,用户从首页选择里订单,进入了订单确认页面,确认后进入了选择支付页面,支付成功以后需要返回首页.如何在进入首页的时候清除堆栈里所有的Activity?说说有效的方法吧.FLAG_ACTIVITY_CLEAR_TOP">
 <meta property="og:locale" content="zh-Hans">
@@ -255,7 +255,7 @@
         <p>我在开发一块下单送货软件的时候遇到的这个问题.场景描述,用户从首页选择里订单,进入了订单确认页面,确认后进入了选择支付页面,支付成功以后需要返回首页.如何在进入首页的时候清除堆栈里所有的Activity?说说有效的方法吧.FLAG_ACTIVITY_CLEAR_TOP<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent(A.<span class="keyword">this</span>,B.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);</span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure></p>
 <p><strong>看看里面的安卓源码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * If set in an Intent passed to &#123;<span class="doctag">@link</span> Context#startActivity Context.startActivity()&#125;,</span></span><br><span class="line"><span class="comment">    * this flag will cause any existing task that would be associated with the</span></span><br><span class="line"><span class="comment">    * activity to be cleared before the activity is started.  That is, the activity</span></span><br><span class="line"><span class="comment">    * becomes the new root of an otherwise empty task, and any old activities</span></span><br><span class="line"><span class="comment">    * are finished.  This can only be used in conjunction with &#123;<span class="doctag">@link</span> #FLAG_ACTIVITY_NEW_TASK&#125;.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> FLAG_ACTIVITY_CLEAR_TASK = <span class="number">0X00008000</span>;</span><br></pre></td></tr></table></figure></p>
 <p>源码中明确说明如果在startActivity的时候传递FLAG_ACTIVITY_CLEAR_TASK这个标志,那么这个标志将会清除之前所有已经打开的activity.然后将会变成另外一个空栈的root,然后其他的Activitys就都被关闭了.这个方法必须跟着{@link #FLAG_ACTIVITY_NEW_TASK}一起使用.</p>
-<h2 id="我的博客地址"><a href="#我的博客地址" class="headerlink" title="我的博客地址"></a>我的博客地址</h2><p><a href="http://pvphero.github.io/" target="_blank" rel="noopener">GitHub Blog</a><br><a href="http://shenzhenwei.coding.me/" target="_blank" rel="noopener">Coding Blog</a><br><a href="http://blog.csdn.net/pvpheroszw" target="_blank" rel="noopener">CSDN Blog</a></p>
+<h2 id="我的博客地址"><a href="#我的博客地址" class="headerlink" title="我的博客地址"></a>我的博客地址</h2><p><a href="http://pvphero.github.io/">GitHub Blog</a><br><a href="http://shenzhenwei.coding.me/" target="_blank" rel="noopener">Coding Blog</a><br><a href="http://blog.csdn.net/pvpheroszw" target="_blank" rel="noopener">CSDN Blog</a></p>
 
       
       
@@ -316,8 +316,8 @@
         <p><span>发布时间:</span>2016年04月27日 - 11时27分</p>
         <p><span>最后更新:</span>2016年04月27日 - 11时31分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/04/27/AndroidIntentJump/" title="Android使用Intent跳转的时候,如何清除堆栈里所有的Activity">https://www.shenzhenwei.cn/2016/04/27/AndroidIntentJump/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://www.shenzhenwei.cn/2016/04/27/AndroidIntentJump/　　作者: 独ǒ无②" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/04/27/AndroidIntentJump/" title="Android使用Intent跳转的时候,如何清除堆栈里所有的Activity">http://pvphero.github.io/2016/04/27/AndroidIntentJump/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://pvphero.github.io/2016/04/27/AndroidIntentJump/　　作者: 独ǒ无②" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
