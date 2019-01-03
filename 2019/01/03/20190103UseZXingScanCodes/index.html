@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用ZXing实现扫描多个条形码页面 | 独ǒ无②&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.前言ZXing是google官方推出的跨平台的基于Java实现处理扫面二维码或者条形码的库。支持很多格式，一维条码支持UPC-A，UPC-E，EAN-8，Code 39，Code 93等格式，二维条码支持QR Code，Data Matrix，PDF 417，MaxiCode等格式。 我们通常使用ZXing扫描的时候都是一个一个的去扫，但是用户的实际操作环境却不尽然。比如说下图：">
+<meta name="keywords" content="Android,自定义控件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用ZXing实现扫描多个条形码页面">
+<meta property="og:url" content="http://pvphero.github.io/2019/01/03/20190103UseZXingScanCodes/index.html">
+<meta property="og:site_name" content="独ǒ无②&#39;s blog">
+<meta property="og:description" content="1.前言ZXing是google官方推出的跨平台的基于Java实现处理扫面二维码或者条形码的库。支持很多格式，一维条码支持UPC-A，UPC-E，EAN-8，Code 39，Code 93等格式，二维条码支持QR Code，Data Matrix，PDF 417，MaxiCode等格式。 我们通常使用ZXing扫描的时候都是一个一个的去扫，但是用户的实际操作环境却不尽然。比如说下图：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pvphero.github.io/2019/01/03/20190103UseZXingScanCodes/media/bf096b63f6246b60b1550782e0f81a4c500fa2e9.jpg">
+<meta property="og:image" content="http://pvphero.github.io/2019/01/03/20190103UseZXingScanCodes/media/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-01-03%20%E4%B8%8B%E5%8D%885.35.26-1.png">
+<meta property="og:image" content="http://pvphero.github.io/2019/01/03/20190103UseZXingScanCodes/media/bf096b63f6246b60b1550782e0f81a4c500fa2e9.jpg">
+<meta property="og:image" content="http://pvphero.github.io/2019/01/03/20190103UseZXingScanCodes/media/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-01-03%20%E4%B8%8B%E5%8D%884.53.40.png">
+<meta property="og:updated_time" content="2019-01-03T09:55:34.564Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用ZXing实现扫描多个条形码页面">
+<meta name="twitter:description" content="1.前言ZXing是google官方推出的跨平台的基于Java实现处理扫面二维码或者条形码的库。支持很多格式，一维条码支持UPC-A，UPC-E，EAN-8，Code 39，Code 93等格式，二维条码支持QR Code，Data Matrix，PDF 417，MaxiCode等格式。 我们通常使用ZXing扫描的时候都是一个一个的去扫，但是用户的实际操作环境却不尽然。比如说下图：">
+<meta name="twitter:image" content="http://pvphero.github.io/2019/01/03/20190103UseZXingScanCodes/media/bf096b63f6246b60b1550782e0f81a4c500fa2e9.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="独ǒ无②&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/head.jpg">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">独ǒ无②</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">独ǒ无② 的技术小黑屋</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=826337999@qq.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/pvphero" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="https://www.zhihu.com/people/zhu-you-qi-38" title="zhihu">zhihu</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-Studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/Bitmap/" style="font-size: 10px;">Bitmap</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/Intent/" style="font-size: 10px;">Intent</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/ListView/" style="font-size: 15px;">ListView</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/NDK/" style="font-size: 15px;">NDK</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/fragment/" style="font-size: 15px;">fragment</a> <a href="/tags/setFlags/" style="font-size: 10px;">setFlags</a> <a href="/tags/性能优化/" style="font-size: 10px;">性能优化</a> <a href="/tags/自定义控件/" style="font-size: 15px;">自定义控件</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/kevinlinkai">kevinlinkai</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/lllkey">lllkey</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.hanyang.site">HanYang</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://jeepend.github.io">jeepend</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://wanghao200906.github.io">wanghao</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">一年有四季,但是人生只有两季, 努力是旺季,不努力是淡季</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">独ǒ无②</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">独ǒ无②</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">独ǒ无② 的技术小黑屋</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=826337999@qq.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/pvphero" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="https://www.zhihu.com/people/zhu-you-qi-38" title="zhihu">zhihu</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-20190103UseZXingScanCodes" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/01/03/20190103UseZXingScanCodes/" class="article-date">
+      <time datetime="2019-01-03T09:08:54.000Z" itemprop="datePublished">2019-01-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用ZXing实现扫描多个条形码页面
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android开发笔记/">Android开发笔记**</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自定义控件/">自定义控件</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h1><p>ZXing是google官方推出的跨平台的基于Java实现处理扫面二维码或者条形码的库。支持很多格式，一维条码支持UPC-A，UPC-E，EAN-8，Code 39，Code 93等格式，二维条码支持QR Code，Data Matrix，PDF 417，MaxiCode等格式。</p>
+<p>我们通常使用ZXing扫描的时候都是一个一个的去扫，但是用户的实际操作环境却不尽然。比如说下图：</p>
+<p><img src="media/bf096b63f6246b60b1550782e0f81a4c500fa2e9.jpg" alt="bf096b63f6246b60b1550782e0f81a4c500fa2e9"></p>
+<a id="more"></a>
+<h1 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2.解决方案"></a>2.解决方案</h1><p>ZXing中有一个类<code>GenericMultipleBarcodeReader</code></p>
+<p>看下这个类的源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericMultipleBarcodeReader</span> <span class="keyword">implements</span> <span class="title">MultipleBarcodeReader</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MIN_DIMENSION_TO_RECUR = <span class="number">100</span>;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_DEPTH = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> Reader delegate;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">GenericMultipleBarcodeReader</span><span class="params">(Reader delegate)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.delegate = delegate;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> Result[] decodeMultiple(BinaryBitmap image) <span class="keyword">throws</span> NotFoundException &#123;</span><br><span class="line">    <span class="keyword">return</span> decodeMultiple(image, <span class="keyword">null</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> Result[] decodeMultiple(BinaryBitmap image, Map&lt;DecodeHintType,?&gt; hints)</span><br><span class="line">      <span class="keyword">throws</span> NotFoundException &#123;</span><br><span class="line">    List&lt;Result&gt; results = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    doDecodeMultiple(image, hints, results, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (results.isEmpty()) &#123;</span><br><span class="line">      <span class="keyword">throw</span> NotFoundException.getNotFoundInstance();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> results.toArray(<span class="keyword">new</span> Result[results.size()]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">doDecodeMultiple</span><span class="params">(BinaryBitmap image,</span></span></span><br><span class="line"><span class="function"><span class="params">                                Map&lt;DecodeHintType,?&gt; hints,</span></span></span><br><span class="line"><span class="function"><span class="params">                                List&lt;Result&gt; results,</span></span></span><br><span class="line"><span class="function"><span class="params">                                <span class="keyword">int</span> xOffset,</span></span></span><br><span class="line"><span class="function"><span class="params">                                <span class="keyword">int</span> yOffset,</span></span></span><br><span class="line"><span class="function"><span class="params">                                <span class="keyword">int</span> currentDepth)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (currentDepth &gt; MAX_DEPTH) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Result result;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      result = delegate.decode(image, hints);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ReaderException ignored) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">boolean</span> alreadyFound = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (Result existingResult : results) &#123;</span><br><span class="line">      <span class="keyword">if</span> (existingResult.getText().equals(result.getText())) &#123;</span><br><span class="line">        alreadyFound = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!alreadyFound) &#123;</span><br><span class="line">      results.add(translateResultPoints(result, xOffset, yOffset));</span><br><span class="line">    &#125;</span><br><span class="line">    ResultPoint[] resultPoints = result.getResultPoints();</span><br><span class="line">    <span class="keyword">if</span> (resultPoints == <span class="keyword">null</span> || resultPoints.length == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> width = image.getWidth();</span><br><span class="line">    <span class="keyword">int</span> height = image.getHeight();</span><br><span class="line">    <span class="keyword">float</span> minX = width;</span><br><span class="line">    <span class="keyword">float</span> minY = height;</span><br><span class="line">    <span class="keyword">float</span> maxX = <span class="number">0.0f</span>;</span><br><span class="line">    <span class="keyword">float</span> maxY = <span class="number">0.0f</span>;</span><br><span class="line">    <span class="keyword">for</span> (ResultPoint point : resultPoints) &#123;</span><br><span class="line">      <span class="keyword">if</span> (point == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">float</span> x = point.getX();</span><br><span class="line">      <span class="keyword">float</span> y = point.getY();</span><br><span class="line">      <span class="keyword">if</span> (x &lt; minX) &#123;</span><br><span class="line">        minX = x;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (y &lt; minY) &#123;</span><br><span class="line">        minY = y;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (x &gt; maxX) &#123;</span><br><span class="line">        maxX = x;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (y &gt; maxY) &#123;</span><br><span class="line">        maxY = y;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Decode left of barcode</span></span><br><span class="line">    <span class="keyword">if</span> (minX &gt; MIN_DIMENSION_TO_RECUR) &#123;</span><br><span class="line">      doDecodeMultiple(image.crop(<span class="number">0</span>, <span class="number">0</span>, (<span class="keyword">int</span>) minX, height),</span><br><span class="line">                       hints, results,</span><br><span class="line">                       xOffset, yOffset,</span><br><span class="line">                       currentDepth + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Decode above barcode</span></span><br><span class="line">    <span class="keyword">if</span> (minY &gt; MIN_DIMENSION_TO_RECUR) &#123;</span><br><span class="line">      doDecodeMultiple(image.crop(<span class="number">0</span>, <span class="number">0</span>, width, (<span class="keyword">int</span>) minY),</span><br><span class="line">                       hints, results,</span><br><span class="line">                       xOffset, yOffset,</span><br><span class="line">                       currentDepth + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Decode right of barcode</span></span><br><span class="line">    <span class="keyword">if</span> (maxX &lt; width - MIN_DIMENSION_TO_RECUR) &#123;</span><br><span class="line">      doDecodeMultiple(image.crop((<span class="keyword">int</span>) maxX, <span class="number">0</span>, width - (<span class="keyword">int</span>) maxX, height),</span><br><span class="line">                       hints, results,</span><br><span class="line">                       xOffset + (<span class="keyword">int</span>) maxX, yOffset,</span><br><span class="line">                       currentDepth + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Decode below barcode</span></span><br><span class="line">    <span class="keyword">if</span> (maxY &lt; height - MIN_DIMENSION_TO_RECUR) &#123;</span><br><span class="line">      doDecodeMultiple(image.crop(<span class="number">0</span>, (<span class="keyword">int</span>) maxY, width, height - (<span class="keyword">int</span>) maxY),</span><br><span class="line">                       hints, results,</span><br><span class="line">                       xOffset, yOffset + (<span class="keyword">int</span>) maxY,</span><br><span class="line">                       currentDepth + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Result <span class="title">translateResultPoints</span><span class="params">(Result result, <span class="keyword">int</span> xOffset, <span class="keyword">int</span> yOffset)</span> </span>&#123;</span><br><span class="line">    ResultPoint[] oldResultPoints = result.getResultPoints();</span><br><span class="line">    <span class="keyword">if</span> (oldResultPoints == <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    ResultPoint[] newResultPoints = <span class="keyword">new</span> ResultPoint[oldResultPoints.length];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; oldResultPoints.length; i++) &#123;</span><br><span class="line">      ResultPoint oldPoint = oldResultPoints[i];</span><br><span class="line">      <span class="keyword">if</span> (oldPoint != <span class="keyword">null</span>) &#123;</span><br><span class="line">        newResultPoints[i] = <span class="keyword">new</span> ResultPoint(oldPoint.getX() + xOffset, oldPoint.getY() + yOffset);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Result newResult = <span class="keyword">new</span> Result(result.getText(),</span><br><span class="line">                                  result.getRawBytes(),</span><br><span class="line">                                  result.getNumBits(),</span><br><span class="line">                                  newResultPoints,</span><br><span class="line">                                  result.getBarcodeFormat(),</span><br><span class="line">                                  result.getTimestamp());</span><br><span class="line">    newResult.putAllMetadata(result.getResultMetadata());</span><br><span class="line">    <span class="keyword">return</span> newResult;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="media/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-01-03%20%E4%B8%8B%E5%8D%885.35.26-1.png" alt="屏幕快照 2019-01-03 下午5.35.26"></p>
+<p>可以看到<code>GenericMultipleBarcodeReader</code>中<code>decodeMultiple</code>返回 <code>Result[]</code>,所以我们可以根据这个类实现条形码的多个返回。</p>
+<h1 id="3-实现过程"><a href="#3-实现过程" class="headerlink" title="3.实现过程"></a>3.实现过程</h1><h2 id="3-1-gradle引入ZXing包"><a href="#3-1-gradle引入ZXing包" class="headerlink" title="3.1 gradle引入ZXing包"></a>3.1 gradle引入ZXing包</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">implementation(<span class="string">'com.journeyapps:zxing-android-embedded:3.6.0'</span>) &#123; transitive = <span class="keyword">false</span> &#125;</span><br><span class="line">    implementation <span class="string">'com.google.zxing:core:3.3.2'</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-2-调用ZXing的扫描页面"><a href="#3-2-调用ZXing的扫描页面" class="headerlink" title="3.2 调用ZXing的扫描页面"></a>3.2 调用ZXing的扫描页面</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">IntentIntegrator intentIntegrator = <span class="keyword">new</span> IntentIntegrator(MainActivity.<span class="keyword">this</span>);</span><br><span class="line">                intentIntegrator</span><br><span class="line">                        .setPrompt(<span class="string">""</span>)</span><br><span class="line">                        .setBeepEnabled(<span class="keyword">false</span>)</span><br><span class="line">                        .setBarcodeImageEnabled(<span class="keyword">true</span>)</span><br><span class="line">                        .setDesiredBarcodeFormats(IntentIntegrator.CODE_128)</span><br><span class="line">                        .initiateScan();</span><br></pre></td></tr></table></figure>
+<p>这里将<code>setBarcodeImageEnabled(true)</code>设置成true，就可以在activity的回调里面获取到扫描的二维码的路径。</p>
+<h2 id="3-3-在onActivityResult中处理"><a href="#3-3-在onActivityResult中处理" class="headerlink" title="3.3 在onActivityResult中处理"></a>3.3 在<code>onActivityResult</code>中处理</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, Intent data)</span> </span>&#123;</span><br><span class="line">        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);</span><br><span class="line">        LogUtils.i(TAG,result.toString());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Bitmap bMap = BitmapFactory.decodeFile(result.getBarcodeImagePath());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span>[] data2 = <span class="keyword">new</span> <span class="keyword">int</span>[bMap.getWidth() * bMap.getHeight()];</span><br><span class="line">        bMap.getPixels(data2, <span class="number">0</span>, bMap.getWidth(), <span class="number">0</span>, <span class="number">0</span>, bMap.getWidth(), bMap.getHeight());</span><br><span class="line">        RGBLuminanceSource rgbLuminanceSource = <span class="keyword">new</span> RGBLuminanceSource(bMap.getWidth(),bMap.getHeight(),data2);</span><br><span class="line"></span><br><span class="line">        LuminanceSource source = rgbLuminanceSource;</span><br><span class="line">        BinaryBitmap bitmap = <span class="keyword">new</span> BinaryBitmap(<span class="keyword">new</span> HybridBinarizer(source));</span><br><span class="line">        Hashtable&lt;DecodeHintType, Object&gt; hints = <span class="keyword">new</span> Hashtable&lt;DecodeHintType, Object&gt;    ();</span><br><span class="line">        hints.put(DecodeHintType.TRY_HARDER, Boolean.TRUE);</span><br><span class="line">        MultiFormatReader mreader = <span class="keyword">new</span> MultiFormatReader();</span><br><span class="line">        GenericMultipleBarcodeReader multireader = <span class="keyword">new</span> GenericMultipleBarcodeReader(mreader);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Result[] result2 = multireader.decodeMultiple(bitmap,hints);</span><br><span class="line">            <span class="keyword">if</span>(result != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">for</span>(Result kp : result2)</span><br><span class="line">                &#123;</span><br><span class="line">                    System.out.println(kp.toString());</span><br><span class="line">                    LogUtils.i(TAG,kp.toString());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (NotFoundException e) &#123;</span><br><span class="line">            <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="4-结果"><a href="#4-结果" class="headerlink" title="4.结果"></a>4.结果</h1><p>在log中我们可以看到扫描的结果<br><img src="media/bf096b63f6246b60b1550782e0f81a4c500fa2e9.jpg" alt="bf096b63f6246b60b1550782e0f81a4c500fa2e9"></p>
+<p><img src="media/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-01-03%20%E4%B8%8B%E5%8D%884.53.40.png" alt="屏幕快照 2019-01-03 下午4.53.40"></p>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/01/03/20190103UseZXingScanCodes/">使用ZXing实现扫描多个条形码页面</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 独ǒ无② 的个人博客">独ǒ无②</a></p>
+        <p><span>发布时间:</span>2019年01月03日 - 17时08分</p>
+        <p><span>最后更新:</span>2019年01月03日 - 17时55分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/01/03/20190103UseZXingScanCodes/" title="使用ZXing实现扫描多个条形码页面">http://pvphero.github.io/2019/01/03/20190103UseZXingScanCodes/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://pvphero.github.io/2019/01/03/20190103UseZXingScanCodes/　　作者: 独ǒ无②" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/27/20181127SuperEditTextUsage/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SuperEditText 用法说明</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-前言"><span class="toc-number">1.</span> <span class="toc-text">1.前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-解决方案"><span class="toc-number">2.</span> <span class="toc-text">2.解决方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-实现过程"><span class="toc-number">3.</span> <span class="toc-text">3.实现过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-gradle引入ZXing包"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 gradle引入ZXing包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-调用ZXing的扫描页面"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 调用ZXing的扫描页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-在onActivityResult中处理"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 在onActivityResult中处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-结果"><span class="toc-number">4.</span> <span class="toc-text">4.结果</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'pvphero',
+      repo: 'pvphero.github.io',
+      oauth: {
+        client_id: 'c2249136ecf5a9510254',
+        client_secret: '3802ed10eafb165c242acca134fda6b9bf2463e9',
+      },
+    })
+    gitment.render('gitments')
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/11/27/20181127SuperEditTextUsage/" title="下一篇: SuperEditText 用法说明">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/01/03/20190103UseZXingScanCodes/">使用ZXing实现扫描多个条形码页面</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/27/20181127SuperEditTextUsage/">SuperEditText 用法说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/04/20180704AndroidUseDrawerLayout/">Android使用ToolBar+DrawerLayout+NavigationView实现侧滑抽屉效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/13/20180413UseWifiToDebugApp/">AndroidStudio利用ADB WIFI调试程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/03/20180403StopWorld/">StopWorld组织成立</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/30/20180330AndroidListViewInDialog/">由Dialog里面嵌套ListView之后的高度自适应引起的ListView性能优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/20180313AndroidInterViewFragment/">Fragment生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/09/AS3NDKCMakeLists/">AndroidStudio项目之CmakeLists解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/08/AS3NDKEnvironment/">AndroidStudio 3.0 NDK环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/25/GoodGoodStudyDayDayUp/">随笔</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/18/AndroidIntentJumpToSysSettings/">Anroid Intent跳转系统设置页面</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/14/ServiceIntetMustBeExplicit/">Service Intent must be explicit的解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/31/AndroidNotificationSound/">关于Android 7.0系统通知声音不能播放</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/JDK7CollectionsSortError/">JDK7 Collections.sort()方法报错分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/11/ClaimApp/">Mac下关于百度开发者中心认领应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/BitmapOccupyMemory/">Bitmap到底占多少内存</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/04/Android-IllegalStateException-Fragment-not-attached-to-Activity/">Android IllegalStateException: Fragment not attached to Activity</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/04/AddGitTag/">使用命令行给Git项目加上tag</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/RemoveAndroidListviewDefaultClickEffect/">怎么去除android listview的默认点击效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/27/AndroidIntentJump/">Android使用Intent跳转的时候,如何清除堆栈里所有的Activity</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/25/PushHexoBlogToGitHubAndCoding/">如何将Hexo Blog同时发布到GitHub跟Coding上</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/24/MyHexoBlogWebsiteRecord/">我的Hexo博客建站日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/24/hello-world/">Hello World</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 独ǒ无②
+            </div>
+            <div class="footer-right">
+                <!--<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman-->
+                <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >海贼到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
