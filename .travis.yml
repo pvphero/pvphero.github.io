@@ -4,7 +4,8 @@ install:
     - npm install hexo-cli -g
     - npm install # 安装hexo及插件
 script:
-    - npm run deploy  # hexo clean && hexo g -d
+    - hexo clean # 清除
+    - hexo g # 生成
 
 after_script:
     - git clone https://${GH_REF} .deploy_git
@@ -18,8 +19,6 @@ after_script:
     - git add .
     - git commit -m "Travis CI Auto Builder"
     - git push --force --quiet "https://${travis_token}@${GH_REF}" master:master
-
-
 
 branches:
     only:
