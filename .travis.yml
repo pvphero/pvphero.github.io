@@ -5,17 +5,24 @@ install:
 script:
     - hexo clean # 清除
     - hexo g # 生成
+
 after_script:
+    - git clone https://${GH_REF} .deploy_git
+    - cd .deploy_git
+    - git checkout master
+    - cd ../
+    - mv .deploy_git/.git/ ./public/
     - cd ./public
-    - git init
-    - git config user.name "pvphero" # 修改name
-    - git config user.email "impvphero@163.com" # 修改email
+    - git config user.name "pvphero"
+    - git config user.email "impvphero@163.com"
     - git add .
     - git commit -m "Travis CI Auto Builder"
-    - git push --force --quiet "https://${travis_token}@${GH_REF}" master:master # GH_TOKEN是在Travis中配置token的名称
+    - git push --force --quiet "https://${travis_token}@${GH_REF}" master:master
+
 branches:
     only:
         - hexo #只监测hexo分支，hexo是我的分支的名称，可根据自己情况设置
 env:
     global:
         - GH_REF: github.com/pvphero/pvphero.github.io.git #设置GH_REF，注意更改yourname
+        - secure: "RThxgHfChkKEloJyw5nCdDZMnjjzgh7ulzP4MhjEgNXg2rRGWnMCp2GT/Zy1Jr7gZ8Qn/rLGo99vdRCC7GFBNTjucVPfL+WGZQ/1Ub0WGNPT+vxgrn+GiEJkKLcUQpJMrqK8cFNU9Zo4qOecmDMM7VBoprZG51JH45xQTFXi40S7MJvE3yR1hWE3rauKVZH1vBcqPhwzCRXVRmq1OmfER7602ecs13q+AGpu007VXpM3nS56GyZygt5dieXHi1Q3IEuutVOcCpJPFXFs33/Dg+aJXt9yTF6uyLQiZ4n1+hiPsVc9gHbd5XJDegRzEHN8OuzumZayquR7KWet/GrNeDIMUcFWF+V6dmmQnrUEvH89lSWrUSx31S6rWLSOT5Xt2IoUM+T0SpGgXCkt9UVSBkqA9DrHuyt/OCv/ghglp8R0zxJVAybsVLUR9HQn8J3kBdn4zG/vjWzOsryK5SOIekVurPQ9tpxGreO36wK247zRK+PlmtZv8k94MZyr0FcuQP/6Mq1kEru220EE++xkILZJWYQVLslsHKTAbj/DjrgErXyKcqqV66ZiewY70+K987gvvoQEqMiNRk4xIjzYU//cX6fet9Gl0i0dSJ2wFbkZNQRmMjuZy627fGAXLVzbivy/rvg04zGra+On7/QS77OO5wRNuJGRBkWxNBdwdCY="
