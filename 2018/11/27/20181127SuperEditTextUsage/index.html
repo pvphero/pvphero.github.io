@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>SuperEditText 用法说明 | 独ǒ无②&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SuperEditText使用说明控件地址：https://github.com/pvphero/SuperEditText 1.控件的功能 EditText一键清除功能 TextInputEditText下方提示语可以显示隐藏   清除按钮可以显示隐藏 EditText 错误提示 Layout错误提示 失去焦点时，提示的文字消失；获得焦点时，提示的文字显示">
+<meta name="keywords" content="Android,自定义控件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SuperEditText 用法说明">
+<meta property="og:url" content="http://pvphero.github.io/2018/11/27/20181127SuperEditTextUsage/index.html">
+<meta property="og:site_name" content="独ǒ无②&#39;s blog">
+<meta property="og:description" content="SuperEditText使用说明控件地址：https://github.com/pvphero/SuperEditText 1.控件的功能 EditText一键清除功能 TextInputEditText下方提示语可以显示隐藏   清除按钮可以显示隐藏 EditText 错误提示 Layout错误提示 失去焦点时，提示的文字消失；获得焦点时，提示的文字显示">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://dn-coding-net-production-pp.codehub.cn/b8b95d88-bc13-497a-a565-048415b45e83.png">
+<meta property="og:updated_time" content="2019-01-04T01:05:48.545Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SuperEditText 用法说明">
+<meta name="twitter:description" content="SuperEditText使用说明控件地址：https://github.com/pvphero/SuperEditText 1.控件的功能 EditText一键清除功能 TextInputEditText下方提示语可以显示隐藏   清除按钮可以显示隐藏 EditText 错误提示 Layout错误提示 失去焦点时，提示的文字消失；获得焦点时，提示的文字显示">
+<meta name="twitter:image" content="https://dn-coding-net-production-pp.codehub.cn/b8b95d88-bc13-497a-a565-048415b45e83.png">
+  
+    <link rel="alternative" href="/atom.xml" title="独ǒ无②&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/head.jpg">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">独ǒ无②</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">独ǒ无② 的技术小黑屋</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=826337999@qq.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/pvphero" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="https://www.zhihu.com/people/zhu-you-qi-38" title="zhihu">zhihu</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-Studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/Android-UnitTest/" style="font-size: 10px;">Android UnitTest</a> <a href="/tags/Bitmap/" style="font-size: 10px;">Bitmap</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/Intent/" style="font-size: 10px;">Intent</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/ListView/" style="font-size: 15px;">ListView</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/NDK/" style="font-size: 15px;">NDK</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/fragment/" style="font-size: 15px;">fragment</a> <a href="/tags/setFlags/" style="font-size: 10px;">setFlags</a> <a href="/tags/性能优化/" style="font-size: 10px;">性能优化</a> <a href="/tags/自定义控件/" style="font-size: 10px;">自定义控件</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/kevinlinkai">kevinlinkai</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/lllkey">lllkey</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.hanyang.site">HanYang</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://jeepend.github.io">jeepend</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://wanghao200906.github.io">wanghao</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">一年有四季,但是人生只有两季, 努力是旺季,不努力是淡季</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">独ǒ无②</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">独ǒ无②</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">独ǒ无② 的技术小黑屋</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=826337999@qq.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/pvphero" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="https://www.zhihu.com/people/zhu-you-qi-38" title="zhihu">zhihu</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-20181127SuperEditTextUsage" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/11/27/20181127SuperEditTextUsage/" class="article-date">
+      <time datetime="2018-11-27T09:37:41.000Z" itemprop="datePublished">2018-11-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SuperEditText 用法说明
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Android开发笔记/">Android开发笔记</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自定义控件/">自定义控件</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="SuperEditText使用说明"><a href="#SuperEditText使用说明" class="headerlink" title="SuperEditText使用说明"></a>SuperEditText使用说明</h1><p>控件地址：<a href="https://github.com/pvphero/SuperEditText" target="_blank" rel="noopener">https://github.com/pvphero/SuperEditText</a></p>
+<h2 id="1-控件的功能"><a href="#1-控件的功能" class="headerlink" title="1.控件的功能"></a>1.控件的功能</h2><ul>
+<li>EditText一键清除功能</li>
+<li>TextInputEditText下方提示语可以显示隐藏  </li>
+<li>清除按钮可以显示隐藏</li>
+<li>EditText 错误提示</li>
+<li>Layout错误提示</li>
+<li>失去焦点时，提示的文字消失；获得焦点时，提示的文字显示</li>
+</ul>
+<a id="more"></a>
+<h2 id="2-控件用法说明"><a href="#2-控件用法说明" class="headerlink" title="2.控件用法说明"></a>2.控件用法说明</h2><ul>
+<li>XML代码</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">com.vv.superedittextlib.FloatingEditTextLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/edittext_layout_error"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_margin</span>=<span class="string">"16dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:hint</span>=<span class="string">"Layout显示错误"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:imeOptions</span>=<span class="string">"actionDone"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:inputType</span>=<span class="string">"textCapWords|textEmailAddress"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:maxLength</span>=<span class="string">"100"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:maxLines</span>=<span class="string">"2"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:paddingRight</span>=<span class="string">"10dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textAllCaps</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">"?colorPrimary"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">"18sp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textStyle</span>=<span class="string">"italic"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:hintAnimationEnabled</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:hintTextAppearance</span>=<span class="string">"@style/HintTextAppearance"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:suet_clearButton</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:suet_floatingLabelText</span>=<span class="string">"超过10个字，提示跟清楚按钮会消失，Layout显示错误"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:suet_floatingLabelTextColor</span>=<span class="string">"?colorPrimary"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:suet_isSafeInputText</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">com.vv.superedittextlib.FloatingEditTextLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Java代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> FloatingEditTextLayout editTextLayoutError, editTextLayoutCase;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        editTextLayoutError = findViewById(R.id.edittext_layout_error);</span><br><span class="line">        editTextLayoutCase = findViewById(R.id.edittext_layout_case);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        editTextLayoutError.addTextChangedListener(<span class="keyword">new</span> TextWatcher() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeTextChanged</span><span class="params">(CharSequence s, <span class="keyword">int</span> start, <span class="keyword">int</span> count, <span class="keyword">int</span> after)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTextChanged</span><span class="params">(CharSequence s, <span class="keyword">int</span> start, <span class="keyword">int</span> before, <span class="keyword">int</span> count)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (s.length() &gt; <span class="number">10</span>) &#123;</span><br><span class="line">                    editTextLayoutError.setError(<span class="keyword">null</span>);</span><br><span class="line">                    editTextLayoutError.hideFloatTextView();</span><br><span class="line">                    ((ClearEditText) editTextLayoutError.getEditText()).setShowClearButton(<span class="keyword">false</span>);</span><br><span class="line">                    editTextLayoutError.setLayoutError(<span class="keyword">null</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    editTextLayoutError.setLayoutError(<span class="string">"身份证号码错误!"</span>);</span><br><span class="line">                    editTextLayoutError.showFloatTextView();</span><br><span class="line">                    ((ClearEditText) editTextLayoutError.getEditText()).setShowClearButton(<span class="keyword">true</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterTextChanged</span><span class="params">(Editable s)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        editTextLayoutCase.addTextChangedListener(<span class="keyword">new</span> TextWatcher() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeTextChanged</span><span class="params">(CharSequence s, <span class="keyword">int</span> start, <span class="keyword">int</span> count, <span class="keyword">int</span> after)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onTextChanged</span><span class="params">(CharSequence s, <span class="keyword">int</span> start, <span class="keyword">int</span> before, <span class="keyword">int</span> count)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (s.length() &lt; <span class="number">10</span>) &#123;</span><br><span class="line">                    editTextLayoutCase.setError(<span class="string">"位数错误"</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    editTextLayoutCase.setError(<span class="keyword">null</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterTextChanged</span><span class="params">(Editable s)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行效果</li>
+</ul>
+<p><img src="https://dn-coding-net-production-pp.codehub.cn/b8b95d88-bc13-497a-a565-048415b45e83.png" alt="图片"></p>
+<h2 id="3-控件说明"><a href="#3-控件说明" class="headerlink" title="3.控件说明"></a>3.控件说明</h2><h3 id="3-1-控件组成"><a href="#3-1-控件组成" class="headerlink" title="3.1 控件组成"></a>3.1 控件组成</h3><p><code>FloatingEditTextLayout</code>是一个组合控件，该控件继承自 <code>TextInputLayout</code>,内部集成了<code>ClearEditText</code> 和 <code>TextView</code></p>
+<ul>
+<li><code>ClearEditText</code> 是用来代替 <code>TextInputEditText</code>,并实现一键清除功能的EditText  </li>
+<li><code>TextView</code> 该控件是用来实现中间的提示字</li>
+</ul>
+<h3 id="3-2-控件公共方法说明"><a href="#3-2-控件公共方法说明" class="headerlink" title="3.2 控件公共方法说明"></a>3.2 控件公共方法说明</h3><ol>
+<li><p><strong>FloatingEditTextLayout.getText()</strong></p>
+<p> 获取editText的Text</p>
+</li>
+<li><p><strong>FloatingEditTextLayout.setText()</strong></p>
+<p>设置editText的Text</p>
+</li>
+<li><p><strong>FloatingEditTextLayout.setError(@Nullable CharSequence errorText)</strong></p>
+<p>设置editText的error</p>
+</li>
+<li><p><strong>FloatingEditTextLayout.setLayoutError(@Nullable CharSequence errorText)</strong></p>
+<p>设置Layout的Error</p>
+</li>
+<li><p><strong>FloatingEditTextLayout.setHint(@StringRes int hintRes)</strong></p>
+<p>设置Hint</p>
+</li>
+<li><p><strong>FloatingEditTextLayout.addTextChangedListener(TextWatcher textWatcher)</strong></p>
+<p>监听editText的TextChange</p>
+</li>
+<li><p><strong>FloatingEditTextLayout.removeTextChangedListener(TextWatcher textWatcher)</strong></p>
+<p>移除editText textChange的监听事件</p>
+</li>
+<li><p><strong>FloatingEditTextLayout.getEditText()</strong></p>
+<p>获取EditText</p>
+</li>
+<li><p><strong>FloatingEditTextLayout.isFloatingLabelAlwaysShown()</strong></p>
+<p>判断是否要一直显示提示的字</p>
+</li>
+<li><p><strong>FloatingEditTextLayout.setFloatingLabelAlwaysShown()</strong></p>
+<p>设置提示的字是否一直显示</p>
+</li>
+<li><p><strong>FloatingEditTextLayout.hideFloatTextView()</strong></p>
+<p>隐藏提示的字</p>
+</li>
+<li><p><strong>FloatingEditTextLayout.showFloatTextView()</strong></p>
+<p>显示提示的字</p>
+</li>
+<li><p><strong>FloatingEditTextLayout.getFloatLableText()</strong></p>
+<p>获取提示的字</p>
+</li>
+<li><p><strong>FloatingEditTextLayout.setFloatLableText(String floatLableText)</strong></p>
+<p>设置提示的字</p>
+</li>
+<li><p><strong>FloatingEditTextLayout.setEnabled(boolean enabled)</strong></p>
+<p>设置enable，如果enable=false则隐藏提示的字，如果enable=true则显示提示的字</p>
+</li>
+<li><p><strong>ClearEditText.setOnFocusChangeListener()</strong> </p>
+<p>ClearEditText设置焦点的监听事件</p>
+</li>
+<li><p><strong>ClearEditText.isShowClearButton()</strong> </p>
+<p>判断是否显示ClearButton</p>
+</li>
+<li><p><strong>ClearEditText.setShowClearButton(boolean showClearButton)</strong> </p>
+<p>设置ClearButton是否显示</p>
+</li>
+<li><p><strong>ClearEditText.getIconSize()</strong></p>
+<p>获取Icon的大小</p>
+</li>
+<li><p><strong>ClearEditText.setIconSize(int iconSize)</strong></p>
+<p>设置Inco的大小</p>
+</li>
+</ol>
+<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><pre><code>Copyright 2018 pvphero
+
+Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre>
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/11/27/20181127SuperEditTextUsage/">SuperEditText 用法说明</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 独ǒ无② 的个人博客">独ǒ无②</a></p>
+        <p><span>发布时间:</span>2018年11月27日 - 17时37分</p>
+        <p><span>最后更新:</span>2019年01月04日 - 09时05分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/11/27/20181127SuperEditTextUsage/" title="SuperEditText 用法说明">http://pvphero.github.io/2018/11/27/20181127SuperEditTextUsage/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://pvphero.github.io/2018/11/27/20181127SuperEditTextUsage/　　作者: 独ǒ无②" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2019/01/03/20190103UseZXingScanCodes/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          使用ZXing实现扫描多个条形码页面
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/04/20180704AndroidUseDrawerLayout/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android使用ToolBar+DrawerLayout+NavigationView实现侧滑抽屉效果</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SuperEditText使用说明"><span class="toc-number">1.</span> <span class="toc-text">SuperEditText使用说明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-控件的功能"><span class="toc-number">1.1.</span> <span class="toc-text">1.控件的功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-控件用法说明"><span class="toc-number">1.2.</span> <span class="toc-text">2.控件用法说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-控件说明"><span class="toc-number">1.3.</span> <span class="toc-text">3.控件说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-控件组成"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 控件组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-控件公共方法说明"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 控件公共方法说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#License"><span class="toc-number">1.4.</span> <span class="toc-text">License</span></a></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'pvphero',
+      repo: 'pvphero.github.io',
+      oauth: {
+        client_id: 'c2249136ecf5a9510254',
+        client_secret: '3802ed10eafb165c242acca134fda6b9bf2463e9',
+      },
+    })
+    gitment.render('gitments')
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/01/03/20190103UseZXingScanCodes/" title="上一篇: 使用ZXing实现扫描多个条形码页面">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/07/04/20180704AndroidUseDrawerLayout/" title="下一篇: Android使用ToolBar+DrawerLayout+NavigationView实现侧滑抽屉效果">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/05/18/20200518JavaGeneric/">重学Java--Java泛型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/23/20191220AndroidUnitTest/">Android 开发如何进行单元测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/23/20190123Camera2FragmentUse/">android-Camera2Basic 解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/03/20190103UseZXingScanCodes/">使用ZXing实现扫描多个条形码页面</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/27/20181127SuperEditTextUsage/">SuperEditText 用法说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/04/20180704AndroidUseDrawerLayout/">Android使用ToolBar+DrawerLayout+NavigationView实现侧滑抽屉效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/13/20180413UseWifiToDebugApp/">AndroidStudio利用ADB WIFI调试程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/03/20180403StopWorld/">StopWorld组织成立</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/30/20180330AndroidListViewInDialog/">由Dialog里面嵌套ListView之后的高度自适应引起的ListView性能优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/20180313AndroidInterViewFragment/">Fragment生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/09/AS3NDKCMakeLists/">AndroidStudio项目之CmakeLists解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/08/AS3NDKEnvironment/">AndroidStudio 3.0 NDK环境搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/25/GoodGoodStudyDayDayUp/">随笔</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/18/AndroidIntentJumpToSysSettings/">Anroid Intent跳转系统设置页面</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/14/ServiceIntetMustBeExplicit/">Service Intent must be explicit的解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/31/AndroidNotificationSound/">关于Android 7.0系统通知声音不能播放</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/JDK7CollectionsSortError/">JDK7 Collections.sort()方法报错分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/11/ClaimApp/">Mac下关于百度开发者中心认领应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/BitmapOccupyMemory/">Bitmap到底占多少内存</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/04/Android-IllegalStateException-Fragment-not-attached-to-Activity/">Android IllegalStateException: Fragment not attached to Activity</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/04/AddGitTag/">使用命令行给Git项目加上tag</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/12/RemoveAndroidListviewDefaultClickEffect/">怎么去除android listview的默认点击效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/27/AndroidIntentJump/">Android使用Intent跳转的时候,如何清除堆栈里所有的Activity</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/25/PushHexoBlogToGitHubAndCoding/">如何将Hexo Blog同时发布到GitHub跟Coding上</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/24/MyHexoBlogWebsiteRecord/">我的Hexo博客建站日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/24/hello-world/">Hello World</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2020 独ǒ无②
+            </div>
+            <div class="footer-right">
+                <!--<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman-->
+                <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >海贼到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
