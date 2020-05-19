@@ -2,6 +2,7 @@
   "name": "hexo-site",
   "version": "1.0.0",
   "private": true,
+  "homepage": "http://pvphero.github.io/",
   "hexo": {
     "version": "3.9.0"
   },
