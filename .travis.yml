@@ -18,27 +18,13 @@ before_install:
     - npm install hexo-cli -g
     - chmod +x ./publish-to-gh-pages.sh
     - npm install hexo-renderer-scss --save
-    - git clone git clone https://github.com/ahonn/hexo-theme-even themes/even
+    - git clone https://github.com/ahonn/hexo-theme-even themes/even
 
 install:
     - npm install # 安装hexo及插件
 script:
     - hexo clean # 清除
     - hexo g # 生成
-
-#after_script:
-#    - git clone https://${GH_REF} .deploy_git
-#    - cd .deploy_git
-#    - git checkout master
-#    - cd ../
-#    - mv .deploy_git/.git/ ./public/
-#    - cd ./public
-#    - git config user.name "pvphero"
-#    - git config user.email "impvphero@163.com"
-#    - git add .
-#    - git commit -m "Travis CI Auto Builder at `date +"%Y-%m-%d %H:%M"`"
-#    - git push --force --quiet "https://${travis_token}@${GH_REF}" master:master
-
 
 after_script:
     - ./publish-to-gh-pages.sh
