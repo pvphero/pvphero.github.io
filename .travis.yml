@@ -17,6 +17,7 @@ before_install:
     - export TZ='Asia/Shanghai'
     - npm install hexo-cli -g
     - chmod +x ./publish-to-gh-pages.sh
+    - npm install hexo-deployer-git --save
 #    - npm install hexo-renderer-scss --save
 #    - git clone https://github.com/ahonn/hexo-theme-even themes/even
 

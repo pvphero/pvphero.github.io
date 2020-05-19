@@ -12,7 +12,6 @@ function checkMobile() {
     }
     return false;
 }
-
 //移动客户端判断结束
 //管理员判断开始
 function sskadmin(e) {
@@ -30,7 +29,6 @@ function sskadmin(e) {
     }
     return ssk;
 }
-
 //管理员判断结束
 //显UA开始
 function ua(e) {
@@ -100,7 +98,6 @@ function ua(e) {
     }
     return outputer + "</span>" + Mobile;
 }
-
 function os(e) {
     var os = '';
     if (e.match(/win/ig)) {
@@ -138,7 +135,6 @@ function os(e) {
     }
     return os + "</span>";
 }
-
 //显UA结束
 
 (function (e, t, n) {
@@ -171,11 +167,9 @@ function os(e) {
                     8e3)
         }
     }
-
     function ct() {
         return rt.data.user_id == 0
     }
-
     function ht(e, t, n) {
         if (o) try {
             o.removeItem(e),
@@ -185,12 +179,10 @@ function os(e) {
         } catch (r) {
         }
     }
-
     function pt(e) {
         w.theme = e,
         e != "none" && w.injectStylesheet(b + "/styles/embed" + (e ? "." + e + ".css?" + y[e] : "." + short_name) + ".css")
     }
-
     if (e.DUOSHUO) return;
     var r = e.location,
         i = e.JSON,

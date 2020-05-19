@@ -26,7 +26,6 @@ $line-numbers
 .article-entry
   pre, code
     font-family: font-mono
-
   blockquote
     background-color: #555
     padding: 10px 15px
@@ -39,22 +38,18 @@ $line-numbers
     -webkit-box-sizing: border-box
     -moz-box-sizing: border-box
     box-sizing: border-box
-
   code
     background: color-inline-background
     padding: 0 0.3em
     border: none
-
   pre
     @extend $code-block
     color: code-word
-
     code
       background: none
       text-shadow: none
       padding: 0
       color: code-word
-
   p
     code
       margin: 0 3px
@@ -69,7 +64,6 @@ $line-numbers
       background-color: color-inline-background
       word-wrap: break-word
       white-space: pre
-
     a
       border: dashed 1px #000
       padding: 8px 8px
@@ -91,7 +85,6 @@ $line-numbers
 
     a:hover
       color: #FFF
-
   h1
     font-size: 1.5em
     margin-top: 30px
@@ -122,7 +115,6 @@ $line-numbers
 
   h3:hover
     content: " > "
-
   h4
     margin: 0.5em auto
     color: #fff
@@ -132,7 +124,6 @@ $line-numbers
     font-weight: normal
     -webkit-border-radius: 6px
     border-radius: 6px
-
   h5
     margin: 0.5em auto
     color: #fff
@@ -142,7 +133,6 @@ $line-numbers
     font-weight: normal
     -webkit-border-radius: 6px
     border-radius: 6px
-
   h6
     margin: 0.5em auto
     color: #fff
@@ -151,13 +141,11 @@ $line-numbers
     font-weight: normal
     -webkit-border-radius: 6px
     border-radius: 6px
-
   hr
     background-color: #2f2f2f
     height: 3px
     border: 0
     margin: 10px 0
-
   ul
     li:before
       content: "\f05d"
@@ -165,18 +153,15 @@ $line-numbers
       display: inline-block
       margin: 0 10px
       line-height: 28px
-
       ul
         li
           margin-left: 20px
-
         li:before
           content: "\f05d"
           font: normal normal normal 14px / 1 FontAwesome
           display: inline-block
           margin: 0 10px
           line-height: 28px
-
   ol
     li
       list-style: decimal
@@ -197,17 +182,14 @@ $line-numbers
     text-shadow: none
     border-bottom: dashed 1px #000
     text-transform: capitalize
-
   .highlight
     @extend $code-block
     border-radius: 4px
     padding: 0 10px
-
     pre
       border: none
       margin: 0
       padding: 0
-
     table
       margin: 20px 0
       width: auto
@@ -219,21 +201,17 @@ $line-numbers
 
         tr:hover
           background: #151414
-
     td
       border: none
       padding: 0
-
     th
       border: 1.5px dashed #020202
-
     figcaption
       clearfix()
       font-size: 0.85em
       color: highlight-comment
       line-height: 1em
       margin-bottom: 1em
-
       a
         float: right
 
@@ -249,7 +227,6 @@ $line-numbers
       font-size: 15px
       height: 1.5em
     color: highlight-foreground
-
   .gist
     margin: 0 article-padding * -1
     border-style: solid
@@ -257,30 +234,24 @@ $line-numbers
     border-width: 1px 0
     background: code-bgc
     padding: 15px article-padding 15px 0
-
     .gist-file
       border: none
       font-family: font-mono
       margin: 0
-
       .gist-data
         background: none
         border: none
-
         .line-numbers
           @extend $line-numbers
           background: none
           border: none
           padding: 0 20px 0 0
-
         .line-data
           padding: 0 !important
-
       .highlight
         margin: 0
         padding: 0
         border: none
-
       .gist-meta
         background: code-bgc
         color: highlight-comment
@@ -289,69 +260,53 @@ $line-numbers
         padding: 0
         margin-top: 1em
         margin-left: article-padding
-
         a
           color: color-link
           font-weight: normal
-
           &:hover
             text-decoration: underline
 
 pre
   .doctype
     color: #586e75
-
   .tag
     color: #839496
-
   .title
     color: #66D9EF
-
   .string
     color: #2aa198
-
   .attribute
     color: #b58900
-
   .cpp
   .annotation
   .command
     color: color-link
-
   .comment
     color: code-comment
-
   .keyword
     color: code-keyword
-
   .function
   .class .params
     color: #66D9EF
-
   .params
   .function
   .css .value
     color: code-argument
-
   .css ~ * .tag
   .at_rule
   .preprocessor
     color: code-tag
-
   .built_in
   .class
   .css ~ * .class
   .function
     color: code-attr
-
   .value
   .number
     color: #7163D7
-
   .id
   .css ~ * .id
     color: code-argument
-
   .link_label
   .code
   .operator

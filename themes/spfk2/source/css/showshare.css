@@ -49,18 +49,15 @@ a {
     transform: scale(0.95, 0.95);
     color: #FFF;
 }
-
 #share .share-toggle-button {
     z-index: 9;
     font-size: 20px;
 }
-
 #share .share-items {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
-
 #share .share-item {
     display: inline-block;
 }
