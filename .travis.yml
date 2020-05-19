@@ -3,8 +3,8 @@ node_js: stable # 设置相应版本
 
 cache:
     apt: true
-    directories:
-        - node_modules
+#    directories:
+#        - node_modules
 
 notifications:
     email:
@@ -30,8 +30,8 @@ script:
 after_script:
     - ./publish-to-gh-pages.sh
 
-#after_success:
-#    - hexo deploy
+after_success:
+    - hexo deploy
 
 branches:
     only:
