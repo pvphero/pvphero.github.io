@@ -28,6 +28,8 @@ script:
 
 after_script:
     - ./publish-to-gh-pages.sh
+
+after_success:
     - hexo deploy
 
 branches:
