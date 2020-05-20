@@ -27,7 +27,8 @@
     "hexo-renderer-marked": "^0.2.4",
     "hexo-renderer-scss": "^1.2.0",
     "hexo-renderer-stylus": "^0.2.0",
-    "hexo-server": "^0.1.2"
+    "hexo-server": "^0.1.2",
+    "yuque-hexo": "^1.6.0"
   },
   "yuqueConfig": {
     "postPath": "source/_posts/yuque",
@@ -40,8 +41,5 @@
     "repo": "wfasx2",
     "token": "0WGWgz6SQvPr9ZyW9GRb74LV022iWZzu5GsH52LH",
     "onlyPublished": false
-  },
-  "devDependencies": {
-    "yuque-hexo": "^1.6.0"
   }
 }
