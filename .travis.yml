@@ -16,6 +16,7 @@ notifications:
 before_install:
     - export TZ='Asia/Shanghai'
     - npm install hexo-cli -g
+    - npm install yuque-hexo -g
     - chmod +x ./publish-to-gh-pages.sh
     - npm install hexo-deployer-git --save
 #    - npm install hexo-renderer-scss --save
@@ -24,6 +25,7 @@ before_install:
 install:
     - npm install # 安装hexo及插件
 script:
+    - npm run sync
     - hexo clean # 清除
     - hexo g # 生成
 
